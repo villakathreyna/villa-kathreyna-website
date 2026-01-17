@@ -6,7 +6,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/612656971-122215906964359676-6049038503657938841-n.jpg"
+          src="/images/FINAL-HERO-SECTION.png"
           alt="Villa Kathreyna Wedding Venue at Night"
           fill
           className="object-cover"
@@ -56,7 +56,7 @@ export default function HeroSection() {
           <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-8" />
 
           <p className="text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
-            Experience the grandeur of Villa Kathreyna! With majestic spaces & lush garden & pool, we create enchanting
+            Experience the grandeur of Villa Kathreyna!<br/>With majestic spaces & lush garden & pool, we create enchanting
             celebrations. Let our team bring your dreams to life in a place fit for royalty.
           </p>
 

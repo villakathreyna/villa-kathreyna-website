@@ -46,7 +46,7 @@ const venueImages = [
   {
     src: "/images/0b1ec43a-2442-41ef-be13-536421bb61c1.jpg",
     alt: "Villa Kathreyna Garden & Pool Aerial View",
-    title: "Garden & Pool",
+    title: "KR Garden & Pool",
   },
   {
     src: "/images/2c12685c-24d0-4195-ad2c-7c1f3797cbd4-20-282-29.jpg",
