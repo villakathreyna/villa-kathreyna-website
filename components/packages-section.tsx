@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Check, Crown, ChevronDown, ChevronUp, Clock, Users, Home, Waves, Building, Gem } from "lucide-react"
+import { motion } from "framer-motion"
 
 const FourPointStar = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -161,63 +162,89 @@ const allInWeddingPackages = [
 
 const venuePackages = [
   {
-    id: "hall-garden",
-    name: "RK Hall & KR Garden & Pool",
-    icon: <Building className="w-8 h-8" />,
-    description: "Complete venue access for grand celebrations",
-    rates: [
-      { pax: "20-50 pax", day: "13,000", night: "15,000" },
-      { pax: "50-70 pax", day: "18,000", night: "20,000" },
-    ],
-    inclusions: [
-      "RK Hall access",
-      "Garden area access",
-      "Swimming pool access",
-      "Tables & chairs setup",
-      "Celebrant's chair",
-      "Table for cake & gifts",
-      "Water dispenser",
-      "Speaker, microphone & videoke",
-      "Parking space",
-    ],
-  },
-  {
     id: "hall-only",
-    name: "RK Hall Only",
+    name: "RK Hall (No Pool Access)",
     icon: <Home className="w-8 h-8" />,
     description: "Elegant indoor venue for intimate events",
     rates: [
-      { pax: "20-50 pax", hours4: "7,000", hours6: "9,000" },
-      { pax: "50-70 pax", hours4: "8,000", hours6: "10,000" },
+      { pax: "20-50 pax", hours6: "5,000", hours8: "7,000" },
+      { pax: "50-100 pax", hours6: "8,000", hours8: "10,000" },
     ],
     inclusions: [
       "RK Hall access",
-      "Tables & chairs setup",
-      "Celebrant's chair",
-      "Table for cake & gifts",
-      "Water dispenser",
-      "Speaker, microphone & videoke",
-      "Parking space",
+      "Tables and chairs setup according to numbers of pax",
+      "Water dispenser with 2 containers of water",
+      "2 buffet tables with cover",
+      "Celebrator's chair",
+      "Videoke, speakers with wireless microphones",
+      "Parking spaces",
     ],
   },
   {
-    id: "garden-only",
-    name: "KR Garden & Pool Only",
+    id: "hall-pool",
+    name: "RK Hall with Pool Access",
+    icon: <Building className="w-8 h-8" />,
+    description: "Indoor venue with pool access",
+    rates: [
+      { pax: "20-50 pax", hours6: "10,000", hours8: "12,000" },
+      { pax: "50-100 pax", hours6: "13,000", hours8: "15,000" },
+    ],
+    inclusions: [
+      "RK Hall access",
+      "Swimming pool access",
+      "Tables and chairs setup according to numbers of pax",
+      "Water dispenser with 2 containers of water",
+      "2 buffet tables with cover",
+      "Celebrator's chair",
+      "Videoke, speakers with wireless microphones",
+      "Parking spaces",
+    ],
+  },
+  {
+    id: "garden-pool",
+    name: "Garden and Pool Access",
     icon: <Waves className="w-8 h-8" />,
     description: "Beautiful outdoor setting with pool access",
     rates: [
-      { pax: "20-50 pax", day: "8,000", night: "13,000" },
-      { pax: "50-70 pax", day: "10,000", night: "15,000" },
+      { pax: "20-50 pax", hours6: "8,000", hours8: "10,000" },
+      { pax: "50-100 pax", hours6: "11,000", hours8: "13,000" },
+      { pax: "100-150 pax", hours6: "15,000", hours8: "17,000" },
+      { pax: "150-200 pax", hours6: "18,000", hours8: "20,000" },
+      { pax: "200-250 pax", hours6: "21,000", hours8: "23,000" },
     ],
     inclusions: [
       "Garden area access",
       "Swimming pool access",
-      "Tables & chairs setup",
-      "Celebrant's chair",
-      "Table for cake & gifts",
-      "Water dispenser",
-      "Speaker, microphone & videoke",
-      "Parking space",
+      "Tables and chairs setup according to numbers of pax",
+      "Water dispenser with 2 containers of water",
+      "2 buffet tables with cover",
+      "Celebrator's chair",
+      "Videoke, speakers with wireless microphones",
+      "Parking spaces",
+    ],
+  },
+  {
+    id: "hall-garden-pool",
+    name: "RK Hall, Garden, Pool Access",
+    icon: <Building className="w-8 h-8" />,
+    description: "Complete venue access for grand celebrations",
+    rates: [
+      { pax: "20-50 pax", hours6: "12,000", hours8: "14,000" },
+      { pax: "50-100 pax", hours6: "15,000", hours8: "17,000" },
+      { pax: "100-150 pax", hours6: "18,000", hours8: "20,000" },
+      { pax: "150-200 pax", hours6: "21,000", hours8: "23,000" },
+      { pax: "200-250 pax", hours6: "24,000", hours8: "26,000" },
+    ],
+    inclusions: [
+      "RK Hall access",
+      "Garden area access",
+      "Swimming pool access",
+      "Tables and chairs setup according to numbers of pax",
+      "Water dispenser with 2 containers of water",
+      "2 buffet tables with cover",
+      "Celebrator's chair",
+      "Videoke, speakers with wireless microphones",
+      "Parking spaces",
     ],
   },
 ]
@@ -249,17 +276,136 @@ const exclusiveAccessPackage = {
 }
 
 const addOns = [
-  { item: "Table Cloth", price: "50 PHP/piece" },
-  { item: "Chair Cover", price: "10 PHP/piece" },
-  { item: "Catering Service (Food, Utensils & Waiters)", price: "starts at 350 PHP/head" },
-  { item: "Facilitator Service (Host, Games, Clown & Magician)", price: "4,000 PHP" },
-  { item: "Decor", price: "starts at 5,000 PHP" },
-  { item: "Photobooth", price: "starts at 4,000 PHP" },
+  { item: "Catering Service (Food, Utensils & Waiters)", price: "starts at 500 PHP/head" },
+  { item: "Backdrop Decor", price: "starts at 5,000 PHP" },
+  { item: "All-In Customized Decor", price: "starts at 10,000 PHP" },
+  { item: "Host/Clown/Magician/Game Facilitator", price: "starts at 5,000 PHP" },
   { item: "Photographer", price: "starts at 5,000 PHP" },
+  { item: "Photobooth", price: "starts at 4,000 PHP" },
   { item: "Grazing Table", price: "starts at 10,000 PHP" },
   { item: "Lechon", price: "starts at 9,000 PHP" },
-  { item: "Cake", price: "starts at 2,000 PHP" },
-  { item: "5x6 Tent", price: "4,000 PHP" },
+  { item: "Cake", price: "starts at 3,000 PHP" },
+  { item: "Bubble Show", price: "starts at 3,000 PHP" },
+  { item: "Inflatables", price: "starts at 4,000 PHP" },
+  { item: "On-The-Day Coordinators", price: "starts at 10,000 PHP" },
+  { item: "Party Food Carts", price: "starts at 3,000 PHP" },
+  { item: "Other Party Needs & Services", price: "Contact RkreatioNs Catering Services" },
+]
+
+const eventPackages = [
+  {
+    id: "birthday-catering",
+    name: "Birthday Package",
+    provider: "RKreatioNs Catering Services",
+    price: "60,000",
+    pax: "100 pax",
+    tagline: "Make your birthday celebration stress-free and extra special with our all-in birthday catering package 💖",
+    inclusions: [
+      "Food catering services for 100 pax",
+      "Simple grazing table / dessert corner",
+      "Tables & chairs setup for 100 pax",
+      "Buffet table with skirting",
+      "Cake table with skirting",
+      "Gift table with skirting",
+      "Customized decorations according to your chosen theme",
+    ],
+    freebies: [
+      "Celebrant's chair",
+      "Ladder souvenir stand",
+      "Entrance signage (Mirror or Easel)",
+    ],
+    addOns: [
+      { item: "Event host", price: "5,000" },
+      { item: "Photographer", price: "5,000" },
+      { item: "Clown / Magician / Host / Game Facilitator", price: "5,000" },
+      { item: "Face painting", price: "3,000" },
+      { item: "Bubble show", price: "3,000" },
+      { item: "Inflatables", price: "starts at 4,000" },
+      { item: "Cake", price: "starts at 2,850" },
+      { item: "Party food carts (fries, hotdog, ice cream, cotton candy)", price: "Contact for pricing" },
+    ],
+    contact: {
+      phone: "0977 627 1360",
+      facebook: "RKreatioNs Catering Services",
+    },
+  },
+  {
+    id: "birthday-baptism-villa",
+    name: "Birthday or Baptism Service Package",
+    provider: "Villa Kathreyna",
+    price: "60,000",
+    pax: "70 pax",
+    inclusions: [
+      "Food catering services for 70 pax",
+      "6 hours free use of: RK Hall, Garden, Pool access",
+      "Free 22-hour stay in 1 Queen Room (2 pax)",
+      "10% discount on additional rooms",
+      "Customized birthday decorations",
+      "Tables and chair setup",
+      "Table centerpieces",
+      "Simple grazing table / dessert corner",
+      "Basic sound and lights",
+      "Free use of videoke",
+      "Free entrance signage (Mirror or Easel)",
+      "Free 1-tier cake",
+      "Cake table",
+      "Souvenir stand",
+    ],
+    contact: {
+      phone: "0977 627 1360",
+      facebook: "Villa Kathreyna",
+    },
+  },
+  {
+    id: "debut-55k",
+    name: "Debut Package A",
+    provider: "Villa Kathreyna",
+    price: "55,000",
+    pax: "50 pax",
+    tagline: "Good for 50 pax",
+    inclusions: [
+      "Food catering services for 50 pax",
+      "3 hours access to villa (Pre-Debut Photoshoot)",
+      "6 hours free use of: RK Hall, Garden, Pool, Terrace & Roof Deck",
+      "Free 22-hour stay in 2 rooms (King Room, Queen Room)",
+      "10% discount on additional rooms",
+      "Simple grazing table",
+      "Customized backdrop decorations",
+      "Tables and chair setup",
+      "Basic sound and lights",
+      "Free use of videoke",
+      "Free entrance signage (Selfie Mirror or Easel)",
+    ],
+    contact: {
+      phone: "0977 627 1360",
+      facebook: "Villa Kathreyna",
+    },
+  },
+  {
+    id: "debut-80k",
+    name: "Debut Package B",
+    provider: "Villa Kathreyna",
+    price: "80,000",
+    pax: "100 pax",
+    tagline: "Good for 100 pax",
+    inclusions: [
+      "Food catering services for 100 pax",
+      "3 hours access to villa (Pre-Debut Photoshoot)",
+      "6 hours free use of: RK Hall, Garden, Pool, Terrace & Roof Deck",
+      "22-hour access to 3 rooms (King Room, Queen Room, Duchess Room)",
+      "10% discount on additional rooms",
+      "Simple grazing table",
+      "Customized backdrop decorations",
+      "Tables and chair setup",
+      "Basic sound and lights",
+      "Free use of videoke",
+      "Free entrance signage (Selfie Mirror or Easel)",
+    ],
+    contact: {
+      phone: "0977 627 1360",
+      facebook: "Villa Kathreyna",
+    },
+  },
 ]
 
 const corkageRates = [
@@ -321,7 +467,13 @@ export default function PackagesSection() {
   return (
     <section id="packages" className="py-20 bg-[#FAF8F5] ornament-pattern">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p className="text-[#C5A028] font-medium tracking-widest uppercase mb-4 font-cinzel">Our Packages</p>
           <h2 className="font-cinzel-decorative text-4xl md:text-5xl text-[#0D7377] font-bold mb-6">
             Celebrate in <span className="text-[#C5A028]">Style</span>
@@ -330,47 +482,68 @@ export default function PackagesSection() {
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
             Choose from our carefully curated packages designed to make your special day unforgettable.
           </p>
-        </div>
+        </motion.div>
 
         <Tabs defaultValue="venue" className="w-full">
-          <TabsList className="flex justify-center mb-12 bg-transparent gap-2 md:gap-4 flex-wrap">
-            <TabsTrigger
-              value="venue"
-              className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
-            >
-              Hall & Pool
-            </TabsTrigger>
-            <TabsTrigger
-              value="exclusive"
-              className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
-            >
-              Exclusive Access
-            </TabsTrigger>
-            <TabsTrigger
-              value="wedding"
-              className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
-            >
-              Wedding
-            </TabsTrigger>
-            <TabsTrigger
-              value="allin"
-              className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
-            >
-              All-In Wedding
-            </TabsTrigger>
-            <TabsTrigger
-              value="addons"
-              className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
-            >
-              Add-Ons
-            </TabsTrigger>
-          </TabsList>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <TabsList className="flex justify-center mb-12 bg-transparent gap-2 md:gap-4 flex-wrap">
+              <TabsTrigger
+                value="venue"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                Hall & Pool
+              </TabsTrigger>
+              <TabsTrigger
+                value="exclusive"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                Exclusive Access
+              </TabsTrigger>
+              <TabsTrigger
+                value="wedding"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                Wedding
+              </TabsTrigger>
+              <TabsTrigger
+                value="allin"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                All-In Wedding
+              </TabsTrigger>
+              <TabsTrigger
+                value="addons"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                Add-Ons
+              </TabsTrigger>
+              <TabsTrigger
+                value="events"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                Event Packages
+              </TabsTrigger>
+            </TabsList>
+          </motion.div>
 
           {/* Venue Packages Tab (Hall & Pool) */}
           <TabsContent value="venue">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {venuePackages.map((pkg) => (
-                <div key={pkg.id} className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {venuePackages.map((pkg, index) => (
+                <motion.div 
+                  key={pkg.id} 
+                  className="bg-white rounded-2xl shadow-xl overflow-hidden"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -10 }}
+                >
                   <div className="bg-[#0D7377] p-6 text-white text-center">
                     <div className="text-[#C5A028] mb-3 flex justify-center">{pkg.icon}</div>
                     <h3 className="font-cinzel-decorative text-2xl font-bold mb-2">{pkg.name}</h3>
@@ -391,6 +564,17 @@ export default function PackagesSection() {
                               <div>
                                 <span className="text-[#1A1A1A]/60">Night:</span>
                                 <span className="font-bold text-[#C5A028] ml-2">P{rate.night}</span>
+                              </div>
+                            </div>
+                          ) : "hours6" in rate ? (
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                              <div>
+                                <span className="text-[#1A1A1A]/60">6 hrs:</span>
+                                <span className="font-bold text-[#C5A028] ml-2">P{rate.hours6}</span>
+                              </div>
+                              <div>
+                                <span className="text-[#1A1A1A]/60">8 hrs:</span>
+                                <span className="font-bold text-[#C5A028] ml-2">P{rate.hours8}</span>
                               </div>
                             </div>
                           ) : (
@@ -424,7 +608,7 @@ export default function PackagesSection() {
                       Book This Package
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </TabsContent>
@@ -778,6 +962,94 @@ export default function PackagesSection() {
                   </ul>
                 </div>
               </div>
+            </div>
+          </TabsContent>
+
+          {/* Event Packages Tab */}
+          <TabsContent value="events">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {eventPackages.map((pkg, index) => (
+                <motion.div
+                  key={pkg.id}
+                  className="bg-white rounded-2xl shadow-xl overflow-hidden"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-[#0D7377] to-[#0D7377]/90 p-6 text-white">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="font-cinzel-decorative text-2xl font-bold">{pkg.name}</h3>
+                      <span className="text-xs bg-[#C5A028] text-[#0D7377] px-3 py-1 rounded-full font-semibold">
+                        {pkg.provider}
+                      </span>
+                    </div>
+                    {pkg.tagline && (
+                      <p className="text-white/90 text-sm italic">{pkg.tagline}</p>
+                    )}
+                  </div>
+
+                  <div className="p-6">
+                    {/* Price and Pax */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <p className="text-3xl font-bold text-[#C5A028]">₱{pkg.price}</p>
+                        <p className="text-[#1A1A1A]/60">{pkg.pax}</p>
+                      </div>
+                    </div>
+
+                    {/* Inclusions */}
+                    <h4 className="font-cinzel text-lg font-bold text-[#0D7377] mb-3">Package Inclusions</h4>
+                    <ul className="space-y-2 mb-6">
+                      {pkg.inclusions.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-[#1A1A1A]/80">
+                          <Check className="w-4 h-4 text-[#0D7377] flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                        {/* Freebies */}
+                        {pkg.freebies && (
+                          <>
+                            <h4 className="font-cinzel text-lg font-bold text-[#0D7377] mb-3">Freebies</h4>
+                            <ul className="space-y-2 mb-6">
+                              {pkg.freebies.map((item, idx) => (
+                                <li key={idx} className="flex items-start gap-2 text-sm text-[#1A1A1A]/80">
+                                  <Check className="w-4 h-4 text-[#0D7377] flex-shrink-0 mt-0.5" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
+                        )}
+
+                        {/* Add-Ons */}
+                        {pkg.addOns && (
+                          <>
+                            <h4 className="font-cinzel text-lg font-bold text-[#0D7377] mb-3">Add-Ons (Optional)</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                              {pkg.addOns.map((addon, idx) => (
+                                <div key={idx} className="flex justify-between items-center py-2 px-3 bg-[#FAF8F5] rounded-lg">
+                                  <span className="text-sm text-[#1A1A1A]/80">{addon.item}</span>
+                                  <span className="text-sm font-bold text-[#C5A028]">₱{addon.price}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        )}
+
+                    {/* CTA Button */}
+                    <button
+                      onClick={() => handleSelectPackage(pkg.name)}
+                      className="w-full bg-[#C5A028] text-[#0D7377] py-3 rounded-lg font-bold hover:bg-[#E8D48B] transition-colors"
+                    >
+                      Book This Package
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </TabsContent>
         </Tabs>

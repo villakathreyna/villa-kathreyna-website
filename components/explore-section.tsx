@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Sparkles, TreePine, Waves, Users, X } from "lucide-react"
+import { motion } from "framer-motion"
 
 const features = [
   {
@@ -67,7 +68,13 @@ export default function ExploreSection() {
     <section id="venue" className="py-20 bg-[#FAF8F5] ornament-pattern">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p className="text-[#C5A028] font-medium tracking-widest uppercase mb-4 font-cinzel">Welcome</p>
           <h2 className="font-cinzel-decorative text-4xl md:text-5xl text-[#0D7377] font-bold mb-6">
             Explore Villa <span className="text-[#C5A028]">Kathreyna</span>
@@ -78,33 +85,49 @@ export default function ExploreSection() {
             Mediterranean vibe. Nestled in the heart of San Fernando, Camarines Sur, we offer the perfect blend of
             luxury and nature for your celebrations and relaxation.
           </p>
-        </div>
+        </motion.div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {features.map((feature) => (
-            <div
+          {features.map((feature, index) => (
+            <motion.div
               key={feature.title}
               className="bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow border-b-4 border-[#C5A028]"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
             >
               <div className="w-16 h-16 bg-[#0D7377] rounded-full flex items-center justify-center mx-auto mb-6">
                 <feature.icon className="w-8 h-8 text-[#C5A028]" />
               </div>
               <h3 className="font-cinzel text-xl text-[#0D7377] font-bold mb-3">{feature.title}</h3>
               <p className="text-[#1A1A1A]/70">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Venue Gallery */}
-        <div className="mb-16">
+        <motion.div 
+          className="mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h3 className="font-cinzel text-2xl text-[#0D7377] font-bold text-center mb-8">Our Majestic Spaces</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {venueImages.map((image, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg cursor-pointer group"
                 onClick={() => setSelectedImage(image.src)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
                 <Image
                   src={image.src || "/placeholder.svg"}
@@ -115,40 +138,55 @@ export default function ExploreSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D7377]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                   <p className="text-white font-cinzel font-bold text-lg">{image.title}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Quote */}
-        <div className="bg-[#0D7377] rounded-2xl p-8 md:p-12 text-center text-white">
+        <motion.div 
+          className="bg-[#0D7377] rounded-2xl p-8 md:p-12 text-center text-white"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p className="text-xl md:text-2xl font-light mb-4 italic">
             "Let our team bring your dreams to life in a place fit for royalty."
           </p>
           <p className="text-[#C5A028] font-cinzel text-lg">- Villa Kathreyna</p>
-        </div>
+        </motion.div>
 
         {/* Lightbox */}
         {selectedImage && (
-          <div
+          <motion.div
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <button
+            <motion.button
               className="absolute top-4 right-4 text-white hover:text-[#C5A028] transition-colors"
               onClick={() => setSelectedImage(null)}
+              whileHover={{ scale: 1.1 }}
             >
               <X className="w-10 h-10" />
-            </button>
-            <div className="relative w-full max-w-5xl aspect-video">
+            </motion.button>
+            <motion.div 
+              className="relative w-full max-w-5xl aspect-video"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
               <Image
                 src={selectedImage || "/placeholder.svg"}
                 alt="Villa Kathreyna Venue"
                 fill
                 className="object-contain"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </section>

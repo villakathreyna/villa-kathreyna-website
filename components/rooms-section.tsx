@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Image from "next/image"
 import { Check, Wind, Coffee, Bath, Eye, Sofa, DoorOpen, BedDouble, Users, Plus } from "lucide-react"
+import { motion } from "framer-motion"
 
 const rooms = [
   {
@@ -103,7 +104,13 @@ export default function RoomsSection() {
   return (
     <section id="rooms" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p className="text-[#C5A028] font-medium tracking-widest uppercase mb-4 font-cinzel">Accommodations</p>
           <h2 className="font-cinzel-decorative text-4xl md:text-5xl text-[#0D7377] font-bold mb-6">
             Luxurious <span className="text-[#C5A028]">Rooms</span>
@@ -112,9 +119,15 @@ export default function RoomsSection() {
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
             Rest and rejuvenate in our elegantly appointed rooms with premium amenities.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-[#FAF8F5] rounded-2xl p-6 mb-12">
+        <motion.div 
+          className="bg-[#FAF8F5] rounded-2xl p-6 mb-12"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <h3 className="font-cinzel text-xl text-[#0D7377] font-bold mb-4 text-center">All Rooms Include</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-[#1A1A1A]/80">
             <span className="flex items-center gap-2 justify-center md:justify-start">
@@ -136,16 +149,21 @@ export default function RoomsSection() {
               <Check className="w-4 h-4 text-[#C5A028]" /> 22 Hours Stay (2pm to 12nn next day)
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Room Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
-          {rooms.map((room) => (
-            <div
+          {rooms.map((room, index) => (
+            <motion.div
               key={room.id}
               className={`bg-[#FAF8F5] rounded-2xl overflow-hidden shadow-lg transition-all hover:shadow-xl ${
                 selectedRoom === room.id ? "ring-4 ring-[#C5A028]" : ""
               }`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
             >
               <div className="relative h-48">
                 <Image src={room.image || "/placeholder.svg"} alt={room.name} fill className="object-cover" />
@@ -219,7 +237,7 @@ export default function RoomsSection() {
                   Book This Room
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

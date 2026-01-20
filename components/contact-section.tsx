@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Phone, MapPin, Clock, Mail } from "lucide-react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -39,7 +40,13 @@ Message: ${formData.message}`
   return (
     <section id="contact" className="py-20 bg-[#FAF8F5] ornament-pattern">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p className="text-[#C5A028] font-medium tracking-widest uppercase mb-4 font-cinzel">Contact Us</p>
           <h2 className="font-cinzel-decorative text-4xl md:text-5xl text-[#0D7377] font-bold mb-6">
             Book Your <span className="text-[#C5A028]">Royal Event</span>
@@ -48,28 +55,42 @@ Message: ${formData.message}`
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
             Let our team bring your dreams to life. Reach out to us today!
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-gradient-to-r from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-6 md:p-8 mb-12 text-center shadow-xl">
+        <motion.div 
+          className="bg-gradient-to-r from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-6 md:p-8 mb-12 text-center shadow-xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           <p className="text-white text-lg md:text-xl mb-4">
             For more info, updates, and latest promos, follow and message us on Facebook!
           </p>
-          <a
+          <motion.a
             href="https://www.facebook.com/villakathreyna"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-[#C5A028] text-[#0D7377] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#E8D48B] transition-colors shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
             Visit Villa Kathreyna on Facebook
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl">
+          <motion.div 
+            className="bg-white rounded-2xl p-8 shadow-xl"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
             <h3 className="font-cinzel text-2xl text-[#0D7377] font-bold mb-6">Send an Inquiry</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -172,25 +193,32 @@ Message: ${formData.message}`
                 />
               </div>
 
-              <button
+              <motion.button
                 type="submit"
                 className="w-full bg-[#C5A028] text-[#0D7377] py-4 rounded-lg font-bold text-lg hover:bg-[#E8D48B] transition-all flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.908 1.438 5.503 3.686 7.2V22l3.302-1.813c.88.246 1.814.38 2.78.38h.232c5.523 0 10-4.145 10-9.24S17.523 2 12 2zm1.038 12.463l-2.545-2.72-4.97 2.72 5.466-5.803 2.608 2.72 4.906-2.72-5.465 5.803z" />
                 </svg>
                 Send Inquiry via Facebook Messenger
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
 
           {/* Contact Info & Map */}
           <div className="space-y-6">
             {/* Contact Cards */}
             <div className="grid grid-cols-1 gap-4">
-              <a
+              <motion.a
                 href="tel:09776271360"
                 className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4 hover:bg-[#0D7377]/90 transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
               >
                 <div className="w-14 h-14 bg-[#C5A028] rounded-full flex items-center justify-center flex-shrink-0">
                   <Phone className="w-6 h-6 text-[#0D7377]" />
@@ -199,11 +227,16 @@ Message: ${formData.message}`
                   <p className="text-[#C5A028] font-medium text-sm">Call Us</p>
                   <p className="text-xl font-bold">0977 627 1360</p>
                 </div>
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="mailto:villakathreynaevents@gmail.com"
                 className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4 hover:bg-[#0D7377]/90 transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
               >
                 <div className="w-14 h-14 bg-[#C5A028] rounded-full flex items-center justify-center flex-shrink-0">
                   <Mail className="w-6 h-6 text-[#0D7377]" />
@@ -212,9 +245,16 @@ Message: ${formData.message}`
                   <p className="text-[#C5A028] font-medium text-sm">Email Us</p>
                   <p className="text-lg font-bold">villakathreynaevents@gmail.com</p>
                 </div>
-              </a>
+              </motion.a>
 
-              <div className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4">
+              <motion.div 
+                className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+              >
                 <div className="w-14 h-14 bg-[#C5A028] rounded-full flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-6 h-6 text-[#0D7377]" />
                 </div>
@@ -222,7 +262,7 @@ Message: ${formData.message}`
                   <p className="text-[#C5A028] font-medium text-sm">Location</p>
                   <p className="text-lg font-bold">Zone 5, Planza, San Fernando, Cam. Sur</p>
                 </div>
-              </div>
+              </motion.div>
 
               <div className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4">
                 <div className="w-14 h-14 bg-[#C5A028] rounded-full flex items-center justify-center flex-shrink-0">
@@ -235,7 +275,13 @@ Message: ${formData.message}`
               </div>
             </div>
 
-            <div className="bg-white rounded-xl overflow-hidden shadow-xl">
+            <motion.div 
+              className="bg-white rounded-xl overflow-hidden shadow-xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1 }}
+              viewport={{ once: true }}
+            >
               <div className="relative h-64">
                 <Image src="/images/vk-20house-202.jpg" alt="Villa Kathreyna Building" fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D7377]/70 to-transparent flex items-end justify-center pb-6">
@@ -249,7 +295,7 @@ Message: ${formData.message}`
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
