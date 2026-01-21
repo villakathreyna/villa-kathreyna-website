@@ -139,19 +139,24 @@ const allInWeddingInclusions = [
   "All 5 Rooms for 22 Hours",
   "Food Catering Services",
   "Simple Motif Venue Decoration",
+  "Photo & Video Coverage",
+  "Emcee/Host",
+  "Sounds & Lights",
+  "1 Tier Cake",
+  "Wine & Couch for Couple",
+  "Grazing Table",
+  "Photobooth",
+  "Free Entrance Signage (Mirror or Easel)",
+]
+
+const allInWeddingAddOns = [
   "Bride's Bouquet & Groom's Boutonniere",
   "Entourage Bouquets & Boutonnieres",
   "Invitation for Guests",
   "Bridal Car w/ Flower Decoration",
   "HMUA for Bride",
   "HMUA for Parents & Entourage",
-  "Photo & Video Coverage with Same Day Edit (SDE)",
-  "Emcee/Host",
-  "Sounds & Lights",
-  "2 Tier Cake",
-  "Wine & Couch for Couple",
-  "Grazing Table",
-  "Photobooth",
+  "Same Day Edit (SDE)",
 ]
 
 const allInWeddingPackages = [
@@ -517,16 +522,16 @@ export default function PackagesSection() {
                 All-In Wedding
               </TabsTrigger>
               <TabsTrigger
-                value="addons"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
-              >
-                Add-Ons
-              </TabsTrigger>
-              <TabsTrigger
                 value="events"
                 className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
               >
                 Event Packages
+              </TabsTrigger>
+              <TabsTrigger
+                value="addons"
+                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+              >
+                Add-Ons
               </TabsTrigger>
             </TabsList>
           </motion.div>
@@ -616,7 +621,13 @@ export default function PackagesSection() {
           {/* Exclusive Access Tab */}
           <TabsContent value="exclusive">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl shadow-2xl overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl shadow-2xl overflow-hidden"
+              >
                 <div className="p-8 md:p-12 text-white text-center border-b border-[#C5A028]/30">
                   <div className="inline-flex items-center gap-2 bg-[#C5A028] text-[#0D7377] px-4 py-2 rounded-full text-sm font-bold mb-6">
                     <Crown className="w-4 h-4" />
@@ -686,16 +697,29 @@ export default function PackagesSection() {
                     Book Exclusive Access
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </TabsContent>
 
           {/* Wedding Packages Tab - Full comparison table with all inclusions */}
           <TabsContent value="wedding">
             {/* Package Comparison Table - Desktop */}
-            <div className="hidden lg:block mb-12 overflow-x-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="hidden lg:block mb-12 overflow-x-auto"
+            >
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <table className="w-full">
+                <table className="w-full table-fixed">
+                  <colgroup>
+                    <col className="w-[20%]" />
+                    <col className="w-[20%]" />
+                    <col className="w-[20%]" />
+                    <col className="w-[20%]" />
+                    <col className="w-[20%]" />
+                  </colgroup>
                   <thead>
                     <tr className="bg-[#0D7377] text-white">
                       <th className="p-4 text-left font-cinzel text-sm">Package Feature</th>
@@ -786,6 +810,14 @@ export default function PackagesSection() {
                         </td>
                       ))}
                     </tr>
+                    <tr className="border-b border-[#E5E0D8]">
+                      <td className="p-4 font-bold text-[#0D7377]">Entrance Signage</td>
+                      {weddingPackages.map((pkg) => (
+                        <td key={pkg.id} className="p-4 text-center text-[#1A1A1A]/80">
+                          Free Entrance Signage (Mirror or Easel)
+                        </td>
+                      ))}
+                    </tr>
                     <tr>
                       <td className="p-4"></td>
                       {weddingPackages.map((pkg) => {
@@ -805,17 +837,21 @@ export default function PackagesSection() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </motion.div>
 
             {/* Mobile View - Cards with tier colors */}
             <div className="lg:hidden space-y-6">
-              {weddingPackages.map((pkg) => {
+              {weddingPackages.map((pkg, index) => {
                 const styles = getTierStyles(pkg.tier)
                 const isExpanded = expandedPackage === pkg.id
 
                 return (
-                  <div
+                  <motion.div
                     key={pkg.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
                     className={`bg-white rounded-2xl shadow-xl overflow-hidden border-2 ${styles.borderColor}`}
                   >
                     <div className={`${styles.headerBg} p-6 text-center`}>
@@ -867,7 +903,7 @@ export default function PackagesSection() {
                         Book {pkg.name} Package
                       </button>
                     </div>
-                  </div>
+                  </motion.div>
                 )
               })}
             </div>
@@ -876,7 +912,13 @@ export default function PackagesSection() {
           {/* All-In Wedding Tab */}
           <TabsContent value="allin">
             <div className="max-w-5xl mx-auto">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              >
                 <div className="bg-gradient-to-r from-[#0D7377] to-[#0D7377]/90 p-8 text-white text-center">
                   <div className="inline-flex items-center gap-2 bg-[#C5A028] text-[#0D7377] px-4 py-2 rounded-full text-sm font-bold mb-4">
                     <Crown className="w-4 h-4" />
@@ -887,21 +929,35 @@ export default function PackagesSection() {
                 </div>
 
                 <div className="p-8">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    {allInWeddingPackages.map((pkg, idx) => (
-                      <div
-                        key={idx}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    {allInWeddingPackages.map((pkg, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        viewport={{ once: true }}
                         className="bg-[#FAF8F5] rounded-xl p-6 text-center border-2 border-transparent hover:border-[#C5A028] transition-colors"
                       >
                         <p className="text-[#0D7377] font-bold mb-2">{pkg.pax}</p>
                         <p className="text-3xl font-bold text-[#C5A028] font-cinzel">₱{pkg.price}</p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 
                   <h4 className="font-cinzel text-xl text-[#0D7377] font-bold mb-4 text-center">Package Inclusions</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
                     {allInWeddingInclusions.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-3 bg-[#FAF8F5] p-3 rounded-lg">
+                        <Check className="w-5 h-5 text-[#0D7377] flex-shrink-0 mt-0.5" />
+                        <span className="text-[#1A1A1A]/80">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <h4 className="font-cinzel text-xl text-[#0D7377] font-bold mb-4 text-center">Optional Add-Ons</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+                    {allInWeddingAddOns.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-3 bg-[#FAF8F5] p-3 rounded-lg">
                         <Check className="w-5 h-5 text-[#0D7377] flex-shrink-0 mt-0.5" />
                         <span className="text-[#1A1A1A]/80">{item}</span>
@@ -916,14 +972,20 @@ export default function PackagesSection() {
                     Book All-In Wedding Package
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </TabsContent>
 
           {/* Add-Ons Tab */}
           <TabsContent value="addons">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              >
                 <div className="bg-[#0D7377] p-6 text-white">
                   <h3 className="font-cinzel-decorative text-2xl font-bold">Available Add-Ons</h3>
                   <p className="text-white/80 text-sm mt-2">Enhance your event with these additional services</p>
@@ -941,9 +1003,15 @@ export default function PackagesSection() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              >
                 <div className="bg-[#C5A028] p-6 text-[#0D7377]">
                   <h3 className="font-cinzel-decorative text-2xl font-bold">Corkage Rates</h3>
                   <p className="text-[#0D7377]/80 text-sm mt-2">Fees for bringing your own suppliers</p>
@@ -961,7 +1029,7 @@ export default function PackagesSection() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </TabsContent>
 

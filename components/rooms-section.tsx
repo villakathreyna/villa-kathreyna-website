@@ -12,7 +12,7 @@ const rooms = [
     id: "princess",
     name: "Princess Room",
     altName: "Standard",
-    price: "2,500",
+    rates: { "22hrs": "1,500", "12hrs": "800" },
     capacity: "2 pax",
     maxCapacity: "Up to 4 pax with extra bed",
     bed: "Double Bed",
@@ -24,7 +24,7 @@ const rooms = [
     id: "prince",
     name: "Prince Room",
     altName: "Standard",
-    price: "2,500",
+    rates: { "22hrs": "1,500", "12hrs": "800" },
     capacity: "2 pax",
     maxCapacity: "Up to 4 pax with extra bed",
     bed: "Bunk Beds",
@@ -36,7 +36,7 @@ const rooms = [
     id: "duchess",
     name: "Duchess Room",
     altName: "Deluxe",
-    price: "3,500",
+    rates: { "22hrs": "2,500", "12hrs": "1,500" },
     capacity: "2 pax",
     maxCapacity: "Up to 4 pax with extra bed",
     bed: "Full Size Bed",
@@ -49,7 +49,7 @@ const rooms = [
     id: "queen",
     name: "Queen Suite",
     altName: "Family Suite",
-    price: "4,500",
+    rates: { "22hrs": "3,500", "12hrs": "2,000" },
     capacity: "2-4 pax",
     maxCapacity: "Up to 6 pax with extra bed",
     bed: "Queen Size Bed",
@@ -69,7 +69,7 @@ const rooms = [
     id: "king",
     name: "King Suite",
     altName: "Premium Suite",
-    price: "5,000",
+    rates: { "22hrs": "4,500", "12hrs": "2,500" },
     capacity: "2-4 pax",
     maxCapacity: "Up to 6 pax with extra bed",
     bed: "King Size Bed",
@@ -100,6 +100,7 @@ const featureIcons: Record<string, { icon: React.ReactNode; label: string }> = {
 
 export default function RoomsSection() {
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null)
+  const formatPrice = (value: string) => Number(value.replace(/,/g, "")).toLocaleString()
 
   return (
     <section id="rooms" className="py-20 bg-white">
@@ -186,9 +187,9 @@ export default function RoomsSection() {
                   <span>{room.bed}</span>
                 </div>
 
-                <div className="flex items-baseline gap-1 mb-3">
-                  <span className="text-[#C5A028] text-2xl font-bold font-cinzel">₱{room.price}</span>
-                  <span className="text-[#1A1A1A]/60 text-xs">/night</span>
+                <div className="flex flex-col gap-1 mb-3">
+                  <span className="text-[#C5A028] text-2xl font-bold font-cinzel">₱{formatPrice(room.rates["22hrs"])} <span className="text-[#1A1A1A]/60 text-xs">/22hrs</span></span>
+                  <span className="text-[#C5A028] text-lg font-bold font-cinzel">₱{formatPrice(room.rates["12hrs"])} <span className="text-[#1A1A1A]/60 text-xs">/12hrs</span></span>
                 </div>
 
                 {/* Feature Icons */}
