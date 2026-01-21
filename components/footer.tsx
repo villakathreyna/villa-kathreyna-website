@@ -36,11 +36,11 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-white/80 mb-6 leading-relaxed">
-              Experience the grandeur of Villa Kathreyna. Where your royal celebrations reign.
+              Experience the grandeur of Villa Kathreyna, Where your royal celebrations reign.
             </p>
             <div className="flex items-center gap-2 text-[#C5A028]">
               <Crown className="w-5 h-5" />
-              <span className="font-cinzel italic">Fit for Royalty</span>
+              <span className="font-cinzel italic">Royalty Within Reach</span>
             </div>
           </div>
 
@@ -128,9 +128,9 @@ export default function Footer() {
               <Link href="/sitemap.xml" className="hover:text-[#C5A028] transition-colors">
                 Sitemap
               </Link>
-              <Link href="/privacy" className="hover:text-[#C5A028] transition-colors">
+              <span className="text-white/60">
                 Privacy Policy
-              </Link>
+              </span>
             </div>
           </div>
         </div>

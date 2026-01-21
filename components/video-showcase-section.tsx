@@ -56,7 +56,7 @@ export default function VideoShowcaseSection() {
               className="bg-white rounded-xl p-6 shadow-lg text-center border-t-2 border-[#C5A028]"
             >
               <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-2">Premium Venue</h4>
-              <p className="text-[#1A1A1A]/70 text-sm">Experience luxury at every corner of our elegant estate.</p>
+              <p className="text-[#1A1A1A]/70 text-sm">Indulge in world-class elegance without the premium price tag.</p>
             </motion.div>
 
             <motion.div
@@ -67,7 +67,7 @@ export default function VideoShowcaseSection() {
               className="bg-white rounded-xl p-6 shadow-lg text-center border-t-2 border-[#C5A028]"
             >
               <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-2">Perfect Setting</h4>
-              <p className="text-[#1A1A1A]/70 text-sm">Create unforgettable memories in our beautifully curated spaces.</p>
+              <p className="text-[#1A1A1A]/70 text-sm">Sophisticated venues and lush gardens—luxury that feels within reach.</p>
             </motion.div>
 
             <motion.div
@@ -78,7 +78,7 @@ export default function VideoShowcaseSection() {
               className="bg-white rounded-xl p-6 shadow-lg text-center border-t-2 border-[#C5A028]"
             >
               <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-2">Book Your Event</h4>
-              <p className="text-[#1A1A1A]/70 text-sm">Start planning your dream celebration with us today.</p>
+              <p className="text-[#1A1A1A]/70 text-sm">Celebrate in style without breaking the bank—your dream venue awaits.</p>
             </motion.div>
           </div>
 

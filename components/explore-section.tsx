@@ -82,8 +82,7 @@ export default function ExploreSection() {
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-3xl mx-auto leading-relaxed">
             Villa Kathreyna is an exclusive events place and resort featuring a royal, elegant gold & green
-            Mediterranean vibe. Nestled in the heart of San Fernando, Camarines Sur, we offer the perfect blend of
-            luxury and nature for your celebrations and relaxation.
+            Mediterranean vibe. Nestled in the heart of San Fernando, Camarines Sur, we deliver sophisticated luxury that's surprisingly accessible—where elegance meets exceptional value for your celebrations and relaxation.
           </p>
         </motion.div>
 
@@ -152,7 +151,7 @@ export default function ExploreSection() {
           viewport={{ once: true }}
         >
           <p className="text-xl md:text-2xl font-light mb-4 italic">
-            "Let our team bring your dreams to life in a place fit for royalty."
+            "Experience the grandeur of royalty at prices that welcome everyone—where dreams become reality."
           </p>
           <p className="text-[#C5A028] font-cinzel text-lg">- Villa Kathreyna</p>
         </motion.div>

@@ -92,8 +92,7 @@ export default function EventsSection() {
           </h2>
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
-            From intimate gatherings to grand celebrations, Villa Kathreyna is the perfect venue for all your special
-            moments.
+            From intimate gatherings to grand celebrations—experience premium venue quality at refreshingly attainable prices. Every moment deserves elegance.
           </p>
         </div>
 

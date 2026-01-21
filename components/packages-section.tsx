@@ -501,7 +501,7 @@ export default function PackagesSection() {
           </h2>
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
-            Choose from our carefully curated packages designed to make your special day unforgettable.
+            Thoughtfully curated packages that deliver luxury and sophistication at exceptional value—because every celebration deserves to be extraordinary.
           </p>
         </motion.div>
 
@@ -512,40 +512,40 @@ export default function PackagesSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <TabsList className="flex justify-center mb-8 md:mb-12 bg-transparent gap-1.5 md:gap-3 lg:gap-4 flex-wrap">
+            <TabsList className="flex justify-center items-center mb-8 md:mb-12 bg-transparent gap-2 md:gap-3 flex-wrap mx-auto w-full">
               <TabsTrigger
                 value="venue"
-                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
+                className="px-5 sm:px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-sm md:text-base"
               >
                 Venue Packages
               </TabsTrigger>
               <TabsTrigger
                 value="exclusive"
-                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
+                className="px-5 sm:px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-sm md:text-base"
               >
                 Exclusive Access
               </TabsTrigger>
               <TabsTrigger
                 value="wedding"
-                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
+                className="px-5 sm:px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-sm md:text-base"
               >
                 Weddings
               </TabsTrigger>
               <TabsTrigger
                 value="allin"
-                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
+                className="px-5 sm:px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-sm md:text-base"
               >
                 All-In Wedding
               </TabsTrigger>
               <TabsTrigger
                 value="events"
-                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
+                className="px-5 sm:px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-sm md:text-base"
               >
                 Event Packages
               </TabsTrigger>
               <TabsTrigger
                 value="addons"
-                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
+                className="px-5 sm:px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-sm md:text-base"
               >
                 Add-Ons
               </TabsTrigger>
@@ -741,7 +741,7 @@ export default function PackagesSection() {
               viewport={{ once: true }}
               className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-6 md:p-8 mb-8 md:mb-12 max-w-5xl mx-auto text-center shadow-lg"
             >
-              <h2 className="font-cinzel-decorative text-2xl sm:text-3xl md:text-4xl text-white mb-3 md:mb-4">
+              <h2 className="font-cinzel-decorative text-2xl sm:text-3xl md:text-4xl text-white mb-3 md:mb-4 font-bold">
                 Your Dream Wedding Awaits
               </h2>
               <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">

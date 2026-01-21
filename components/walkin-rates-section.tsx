@@ -14,7 +14,7 @@ export default function WalkInRatesSection() {
           </h2>
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
-            Enjoy our pool and amenities even without a reservation. Perfect for a quick summer getaway!
+            Enjoy our resort-quality pool and amenities without reservation—affordable luxury for spontaneous escapes and unforgettable summer memories.
           </p>
         </div>
 

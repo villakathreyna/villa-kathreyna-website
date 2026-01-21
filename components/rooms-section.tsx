@@ -119,7 +119,7 @@ export default function RoomsSection() {
           </h2>
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
-            Rest and rejuvenate in our elegantly appointed rooms with premium amenities.
+            Rest and rejuvenate in our elegantly appointed rooms featuring premium amenities—where comfort meets exceptional value for your perfect stay.
           </p>
         </motion.div>
 
