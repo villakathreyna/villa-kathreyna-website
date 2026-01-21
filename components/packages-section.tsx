@@ -165,12 +165,21 @@ const allInWeddingPackages = [
   { pax: "200 pax", price: "250,000" },
 ]
 
+const commonVenueInclusions = [
+  "Tables and chairs setup according to numbers of pax",
+  "Water dispenser with 2 containers of water",
+  "2 buffet tables with cover",
+  "Celebrator's chair",
+  "Videoke, speakers with wireless microphones",
+  "Parking spaces",
+]
+
 const venuePackages = [
   {
     id: "hall-only",
-    name: "RK Hall (No Pool Access)",
+    name: "RK Hall",
     icon: <Home className="w-8 h-8" />,
-    description: "Elegant indoor venue for intimate events",
+    description: "Premium elegance and sophistication without the premium price",
     rates: [
       { pax: "20-50 pax", hours6: "5,000", hours8: "7,000" },
       { pax: "50-100 pax", hours6: "8,000", hours8: "10,000" },
@@ -187,9 +196,9 @@ const venuePackages = [
   },
   {
     id: "hall-pool",
-    name: "RK Hall with Pool Access",
+    name: "RK Hall (with Pool Access)",
     icon: <Building className="w-8 h-8" />,
-    description: "Indoor venue with pool access",
+    description: "Luxurious indoor-outdoor experience at an exceptional value",
     rates: [
       { pax: "20-50 pax", hours6: "10,000", hours8: "12,000" },
       { pax: "50-100 pax", hours6: "13,000", hours8: "15,000" },
@@ -207,9 +216,9 @@ const venuePackages = [
   },
   {
     id: "garden-pool",
-    name: "Garden and Pool Access",
+    name: "KR Garden & Pool Access",
     icon: <Waves className="w-8 h-8" />,
-    description: "Beautiful outdoor setting with pool access",
+    description: "Outdoor paradise with sophisticated amenities, affordable elegance",
     rates: [
       { pax: "20-50 pax", hours6: "8,000", hours8: "10,000" },
       { pax: "50-100 pax", hours6: "11,000", hours8: "13,000" },
@@ -230,9 +239,9 @@ const venuePackages = [
   },
   {
     id: "hall-garden-pool",
-    name: "RK Hall, Garden, Pool Access",
+    name: "RK Hall and KR Garden & Pool Access",
     icon: <Building className="w-8 h-8" />,
-    description: "Complete venue access for grand celebrations",
+    description: "The ultimate celebration experience: luxury meets accessibility",
     rates: [
       { pax: "20-50 pax", hours6: "12,000", hours8: "14,000" },
       { pax: "50-100 pax", hours6: "15,000", hours8: "17,000" },
@@ -258,6 +267,7 @@ const exclusiveAccessPackage = {
   name: "Exclusive Access",
   price: "25,000",
   duration: "22 Hours (2pm to 12nn next day)",
+  spiel: "Your private sanctuary: unwind in 5 luxurious rooms with premium amenities and full venue access—all-inclusive elegance",
   inclusions: [
     "5 Rooms (King, Queen, Duchess, Prince, Princess)",
     "Overnight sleeping capacity: 20 pax (based on standard beds)",
@@ -331,7 +341,7 @@ const eventPackages = [
     ],
     contact: {
       phone: "0977 627 1360",
-      facebook: "RKreatioNs Catering Services",
+      facebook: "https://www.facebook.com/profile.php?id=100064225560986",
     },
   },
   {
@@ -426,7 +436,12 @@ export default function PackagesSection() {
   const [expandedPackage, setExpandedPackage] = useState<string | null>(null)
 
   const handleSelectPackage = (packageName: string) => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+    // Dispatch custom event with package name
+    window.dispatchEvent(new CustomEvent('selectPackage', { detail: packageName }))
+    // Scroll to contact form
+    setTimeout(() => {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+    }, 100)
   }
 
   const getTierStyles = (tier: string) => {
@@ -496,40 +511,40 @@ export default function PackagesSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <TabsList className="flex justify-center mb-12 bg-transparent gap-2 md:gap-4 flex-wrap">
+            <TabsList className="flex justify-center mb-8 md:mb-12 bg-transparent gap-1.5 md:gap-3 lg:gap-4 flex-wrap">
               <TabsTrigger
                 value="venue"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
               >
-                Hall & Pool
+                Venue Packages
               </TabsTrigger>
               <TabsTrigger
                 value="exclusive"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
               >
                 Exclusive Access
               </TabsTrigger>
               <TabsTrigger
                 value="wedding"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
               >
-                Wedding
+                Weddings
               </TabsTrigger>
               <TabsTrigger
                 value="allin"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
               >
                 All-In Wedding
               </TabsTrigger>
               <TabsTrigger
                 value="events"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
               >
                 Event Packages
               </TabsTrigger>
               <TabsTrigger
                 value="addons"
-                className="px-4 md:px-6 py-3 rounded-full border-2 border-[#0D7377] text-[#0D7377] font-semibold data-[state=active]:bg-[#0D7377] data-[state=active]:text-white transition-all text-sm"
+                className="px-2.5 sm:px-4 md:px-5 lg:px-7 py-2 md:py-3 rounded-full bg-white border-2 border-[#0D7377] text-[#0D7377] font-bold shadow-md hover:shadow-lg hover:bg-[#FAF8F5] data-[state=active]:bg-[#0D7377] data-[state=active]:text-white data-[state=active]:border-[#0D7377] data-[state=active]:shadow-lg transition-all text-xs sm:text-xs md:text-sm lg:text-base"
               >
                 Add-Ons
               </TabsTrigger>
@@ -538,77 +553,88 @@ export default function PackagesSection() {
 
           {/* Venue Packages Tab (Hall & Pool) */}
           <TabsContent value="venue">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div 
+              className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-4 md:p-6 lg:p-8 mb-6 md:mb-8 shadow-lg"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
+                <Gem className="w-4 md:w-5 h-4 md:h-5 text-[#C5A028]" />
+                <h3 className="font-cinzel text-base md:text-lg lg:text-xl text-white font-bold text-center">All Hall & Pool Packages Include</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 text-xs md:text-sm text-white/90">
+                {commonVenueInclusions.map((item, idx) => (
+                  <span key={idx} className="flex items-center gap-2 justify-center md:justify-start">
+                    <Check className="w-3 md:w-4 h-3 md:h-4 text-[#C5A028] flex-shrink-0" /> <span>{item}</span>
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
               {venuePackages.map((pkg, index) => (
                 <motion.div 
                   key={pkg.id} 
                   className="bg-white rounded-2xl shadow-xl overflow-hidden"
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -10 }}
+                  whileHover={{ y: -5 }}
                 >
-                  <div className="bg-[#0D7377] p-6 text-white text-center">
-                    <div className="text-[#C5A028] mb-3 flex justify-center">{pkg.icon}</div>
-                    <h3 className="font-cinzel-decorative text-2xl font-bold mb-2">{pkg.name}</h3>
-                    <p className="text-white/80 text-sm">{pkg.description}</p>
+                  <div className="bg-[#0D7377] p-3 md:p-4 text-white text-center">
+                    <div className="text-[#C5A028] mb-2 flex justify-center text-lg md:text-2xl">{pkg.icon}</div>
+                    <h3 className="font-cinzel-decorative text-sm md:text-lg font-bold mb-1">{pkg.name}</h3>
+                    <p className="text-white/80 text-xs">{pkg.description}</p>
                   </div>
-                  <div className="p-6">
-                    <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-4">Rates</h4>
-                    <div className="space-y-4 mb-6">
+                  <div className="p-3 md:p-4">
+                    <h4 className="font-cinzel text-sm md:text-base text-[#0D7377] font-bold mb-2">Rates</h4>
+                    <div className="grid grid-cols-2 gap-1 mb-3 md:mb-4">
                       {pkg.rates.map((rate, idx) => (
-                        <div key={idx} className="bg-[#FAF8F5] p-4 rounded-lg">
-                          <p className="font-bold text-[#0D7377] mb-2">{rate.pax}</p>
+                        <div key={idx} className="bg-[#FAF8F5] p-1.5 md:p-2 rounded">
+                          <p className="font-bold text-[#0D7377] text-xs mb-0.5">{rate.pax}</p>
                           {"day" in rate ? (
-                            <div className="grid grid-cols-2 gap-2 text-sm">
-                              <div>
+                            <div className="space-y-0.5 text-xs">
+                              <div className="flex items-center gap-1">
                                 <span className="text-[#1A1A1A]/60">Day:</span>
-                                <span className="font-bold text-[#C5A028] ml-2">P{rate.day}</span>
+                                <span className="font-bold text-[#C5A028]">P{rate.day}</span>
                               </div>
-                              <div>
+                              <div className="flex items-center gap-1">
                                 <span className="text-[#1A1A1A]/60">Night:</span>
-                                <span className="font-bold text-[#C5A028] ml-2">P{rate.night}</span>
+                                <span className="font-bold text-[#C5A028]">P{rate.night}</span>
                               </div>
                             </div>
                           ) : "hours6" in rate ? (
-                            <div className="grid grid-cols-2 gap-2 text-sm">
-                              <div>
-                                <span className="text-[#1A1A1A]/60">6 hrs:</span>
-                                <span className="font-bold text-[#C5A028] ml-2">P{rate.hours6}</span>
+                            <div className="space-y-0.5 text-xs">
+                              <div className="flex items-center gap-1">
+                                <span className="text-[#1A1A1A]/60 whitespace-nowrap">6 hrs:</span>
+                                <span className="font-bold text-[#C5A028]">P{rate.hours6}</span>
                               </div>
-                              <div>
-                                <span className="text-[#1A1A1A]/60">8 hrs:</span>
-                                <span className="font-bold text-[#C5A028] ml-2">P{rate.hours8}</span>
+                              <div className="flex items-center gap-1">
+                                <span className="text-[#1A1A1A]/60 whitespace-nowrap">8 hrs:</span>
+                                <span className="font-bold text-[#C5A028]">P{rate.hours8}</span>
                               </div>
                             </div>
                           ) : (
-                            <div className="grid grid-cols-2 gap-2 text-sm">
-                              <div>
-                                <span className="text-[#1A1A1A]/60">4 hrs:</span>
-                                <span className="font-bold text-[#C5A028] ml-2">P{rate.hours4}</span>
+                            <div className="space-y-0.5 text-xs">
+                              <div className="flex items-center gap-1">
+                                <span className="text-[#1A1A1A]/60 whitespace-nowrap">4 hrs:</span>
+                                <span className="font-bold text-[#C5A028]">P{rate.hours4}</span>
                               </div>
-                              <div>
-                                <span className="text-[#1A1A1A]/60">6 hrs:</span>
-                                <span className="font-bold text-[#C5A028] ml-2">P{rate.hours6}</span>
+                              <div className="flex items-center gap-1">
+                                <span className="text-[#1A1A1A]/60 whitespace-nowrap">6 hrs:</span>
+                                <span className="font-bold text-[#C5A028]">P{rate.hours6}</span>
                               </div>
                             </div>
                           )}
                         </div>
                       ))}
                     </div>
-                    <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-3">Free Inclusions</h4>
-                    <ul className="space-y-2 mb-6">
-                      {pkg.inclusions.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-[#1A1A1A]/80">
-                          <Check className="w-4 h-4 text-[#0D7377] flex-shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
                     <button
                       onClick={() => handleSelectPackage(pkg.name)}
-                      className="w-full bg-[#C5A028] text-[#0D7377] py-3 rounded-lg font-bold hover:bg-[#E8D48B] transition-colors"
+                      className="w-full bg-[#C5A028] text-[#0D7377] py-2.5 md:py-3 rounded-lg font-bold text-xs md:text-sm hover:bg-[#E8D48B] transition-colors active:scale-95"
                     >
                       Book This Package
                     </button>
@@ -628,59 +654,62 @@ export default function PackagesSection() {
                 viewport={{ once: true }}
                 className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl shadow-2xl overflow-hidden"
               >
-                <div className="p-8 md:p-12 text-white text-center border-b border-[#C5A028]/30">
-                  <div className="inline-flex items-center gap-2 bg-[#C5A028] text-[#0D7377] px-4 py-2 rounded-full text-sm font-bold mb-6">
-                    <Crown className="w-4 h-4" />
+                <div className="p-4 md:p-8 lg:p-12 text-white text-center border-b border-[#C5A028]/30">
+                  <div className="inline-flex items-center gap-2 bg-[#C5A028] text-[#0D7377] px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold mb-4 md:mb-6">
+                    <Crown className="w-3 md:w-4 h-3 md:h-4" />
                     BEST VALUE
                   </div>
-                  <h3 className="font-cinzel-decorative text-4xl md:text-5xl font-bold mb-4">
+                  <h3 className="font-cinzel-decorative text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
                     {exclusiveAccessPackage.name}
                   </h3>
-                  <div className="flex items-center justify-center gap-2 mb-4">
-                    <Clock className="w-5 h-5 text-[#C5A028]" />
-                    <span className="text-[#C5A028]">{exclusiveAccessPackage.duration}</span>
+                  <p className="text-white/90 text-xs sm:text-sm md:text-base mb-4 md:mb-6 max-w-2xl mx-auto">
+                    {exclusiveAccessPackage.spiel}
+                  </p>
+                  <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
+                    <Clock className="w-4 md:w-5 h-4 md:h-5 text-[#C5A028]" />
+                    <span className="text-[#C5A028] text-xs md:text-base">{exclusiveAccessPackage.duration}</span>
                   </div>
-                  <p className="text-6xl md:text-7xl font-bold font-cinzel text-[#C5A028] mb-2">
+                  <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-cinzel text-[#C5A028] mb-2">
                     P{exclusiveAccessPackage.price}
                   </p>
                 </div>
 
-                <div className="p-8 md:p-12 bg-white text-[#1A1A1A]">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="p-4 md:p-8 lg:p-12 bg-white text-[#1A1A1A]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <div>
-                      <h4 className="font-cinzel text-xl text-[#0D7377] font-bold mb-4 flex items-center gap-2">
-                        <Home className="w-5 h-5 text-[#C5A028]" />
+                      <h4 className="font-cinzel text-base md:text-lg lg:text-xl text-[#0D7377] font-bold mb-3 md:mb-4 flex items-center gap-2">
+                        <Home className="w-4 md:w-5 h-4 md:h-5 text-[#C5A028]" />
                         Package Inclusions
                       </h4>
-                      <ul className="space-y-3">
+                      <ul className="space-y-2 md:space-y-3">
                         {exclusiveAccessPackage.inclusions.map((item, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-[#0D7377] flex-shrink-0 mt-0.5" />
-                            <span>{item}</span>
+                          <li key={idx} className="flex items-start gap-2 md:gap-3">
+                            <Check className="w-4 md:w-5 h-4 md:h-5 text-[#0D7377] flex-shrink-0 mt-0.5" />
+                            <span className="text-sm md:text-base">{item}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div>
-                      <h4 className="font-cinzel text-xl text-[#0D7377] font-bold mb-4 flex items-center gap-2">
-                        <Users className="w-5 h-5 text-[#C5A028]" />
+                      <h4 className="font-cinzel text-base md:text-lg lg:text-xl text-[#0D7377] font-bold mb-3 md:mb-4 flex items-center gap-2">
+                        <Users className="w-4 md:w-5 h-4 md:h-5 text-[#C5A028]" />
                         Event Booking Bonus
                       </h4>
-                      <ul className="space-y-3 mb-8">
+                      <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8">
                         {exclusiveAccessPackage.eventBonus.map((item, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <GoldStar className="w-5 h-5 text-[#C5A028] flex-shrink-0 mt-0.5" />
-                            <span>{item}</span>
+                          <li key={idx} className="flex items-start gap-2 md:gap-3">
+                            <GoldStar className="w-4 md:w-5 h-4 md:h-5 text-[#C5A028] flex-shrink-0 mt-0.5" />
+                            <span className="text-sm md:text-base">{item}</span>
                           </li>
                         ))}
                       </ul>
 
-                      <h4 className="font-cinzel text-xl text-[#0D7377] font-bold mb-4">Additional Charges</h4>
-                      <div className="bg-[#FAF8F5] rounded-xl p-4">
-                        <ul className="space-y-2">
+                      <h4 className="font-cinzel text-base md:text-lg lg:text-xl text-[#0D7377] font-bold mb-3 md:mb-4">Additional Charges</h4>
+                      <div className="bg-[#FAF8F5] rounded-xl p-3 md:p-4">
+                        <ul className="space-y-1 md:space-y-2">
                           {exclusiveAccessPackage.additionalCharges.map((charge, idx) => (
-                            <li key={idx} className="flex justify-between text-sm">
+                            <li key={idx} className="flex justify-between text-xs md:text-sm">
                               <span className="text-[#1A1A1A]/70">{charge.item}</span>
                               <span className="font-bold text-[#0D7377]">{charge.price}</span>
                             </li>
@@ -692,7 +721,7 @@ export default function PackagesSection() {
 
                   <button
                     onClick={() => handleSelectPackage("Exclusive Access")}
-                    className="w-full bg-[#C5A028] text-[#0D7377] py-4 rounded-lg font-bold text-lg hover:bg-[#E8D48B] transition-colors mt-8"
+                    className="w-full bg-[#C5A028] text-[#0D7377] py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-[#E8D48B] transition-colors active:scale-95 mt-6 md:mt-8"
                   >
                     Book Exclusive Access
                   </button>
@@ -1107,6 +1136,32 @@ export default function PackagesSection() {
                             </div>
                           </>
                         )}
+
+
+                    {/* Contact Info for RKreatioNs packages only */}
+                    {pkg.contact && pkg.provider === "RKreatioNs Catering Services" && (
+                      <div className="mb-4 p-4 bg-[#FAF8F5] rounded-lg">
+                        <p className="text-sm text-[#1A1A1A]/60 mb-2">Contact {pkg.provider}:</p>
+                        <div className="flex flex-col gap-2">
+                          <a
+                            href={`tel:${pkg.contact.phone.replace(/\s/g, '')}`}
+                            className="text-sm text-[#0D7377] hover:text-[#C5A028] font-medium"
+                          >
+                            📞 {pkg.contact.phone}
+                          </a>
+                          {pkg.contact.facebook && (
+                            <a
+                              href={pkg.contact.facebook}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-[#0D7377] hover:text-[#C5A028] font-medium"
+                            >
+                              📘 Message on Facebook
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
 
                     {/* CTA Button */}
                     <button

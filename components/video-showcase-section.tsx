@@ -91,7 +91,7 @@ export default function VideoShowcaseSection() {
             className="text-center mt-8"
           >
             <a
-              href="#contact"
+              href="#events"
               className="inline-block bg-[#0D7377] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#0D7377]/90 transition-colors shadow-lg"
             >
               Start Planning Your Event

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Phone, MapPin, Mail } from "lucide-react"
+import { Menu, X, Phone, MapPin, Mail, PhoneCall } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -41,6 +41,10 @@ export default function Header() {
               <Phone className="w-4 h-4" />
               <span>0977 627 1360</span>
             </a>
+            <a href="tel:0543413605" className="flex items-center gap-2 hover:text-white transition-colors">
+              <PhoneCall className="w-4 h-4" />
+              <span>054 341 3605</span>
+            </a>
             <a
               href="mailto:villakathreynaevents@gmail.com"
               className="flex items-center gap-2 hover:text-white transition-colors"
@@ -50,10 +54,15 @@ export default function Header() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-2">
+            <a 
+              href="https://www.google.com/maps?q=Villa+Kathreyna+San+Fernando+Camarines+Sur"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-white transition-colors"
+            >
               <MapPin className="w-4 h-4" />
               Zone 5, Planza, San Fernando, Cam. Sur
-            </span>
+            </a>
             <a
               href="https://www.facebook.com/villakathreyna"
               target="_blank"

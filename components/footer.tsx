@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Phone, MapPin, Crown, Mail } from "lucide-react"
+import { Phone, MapPin, Crown, Mail, PhoneCall } from "lucide-react"
 
 const quickLinks = [
   { href: "#home", label: "Home" },
@@ -78,7 +78,14 @@ export default function Footer() {
                 className="flex items-center gap-3 text-white/80 hover:text-[#C5A028] transition-colors"
               >
                 <Phone className="w-5 h-5 text-[#C5A028]" />
-                0977 627 1360
+                0977 627 1360 (Mobile)
+              </a>
+              <a
+                href="tel:0543413605"
+                className="flex items-center gap-3 text-white/80 hover:text-[#C5A028] transition-colors"
+              >
+                <PhoneCall className="w-5 h-5 text-[#C5A028]" />
+                054 341 3605 (Landline)
               </a>
               <a
                 href="mailto:villakathreynaevents@gmail.com"
@@ -87,10 +94,15 @@ export default function Footer() {
                 <Mail className="w-5 h-5 text-[#C5A028]" />
                 villakathreynaevents@gmail.com
               </a>
-              <div className="flex items-start gap-3 text-white/80">
+              <a
+                href="https://www.google.com/maps?q=Villa+Kathreyna+San+Fernando+Camarines+Sur"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 text-white/80 hover:text-[#C5A028] transition-colors"
+              >
                 <MapPin className="w-5 h-5 text-[#C5A028] mt-0.5" />
                 <span>Zone 5, Planza, San Fernando, Camarines Sur</span>
-              </div>
+              </a>
               <a
                 href="https://www.facebook.com/villakathreyna"
                 target="_blank"

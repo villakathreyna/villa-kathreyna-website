@@ -2,24 +2,52 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { Phone, MapPin, Clock, Mail } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Phone, MapPin, Clock, Mail, PhoneCall } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
 export default function ContactSection() {
+  const getTodayDate = () => {
+    const today = new Date()
+    const year = today.getFullYear()
+    const month = String(today.getMonth() + 1).padStart(2, '0')
+    const day = String(today.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     eventType: "",
-    eventDate: "",
+    eventDate: getTodayDate(),
     guestCount: "",
     message: "",
   })
 
+  useEffect(() => {
+    const handlePackageSelect = (e: CustomEvent) => {
+      console.log('Package selected:', e.detail)
+      setFormData(prev => ({ ...prev, eventType: e.detail }))
+    }
+    window.addEventListener('selectPackage', handlePackageSelect as EventListener)
+    return () => window.removeEventListener('selectPackage', handlePackageSelect as EventListener)
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Format the date to "Month Day, Year" format
+    let formattedDate = formData.eventDate
+    if (formData.eventDate) {
+      const date = new Date(formData.eventDate + 'T00:00:00')
+      formattedDate = date.toLocaleDateString('en-US', { 
+        month: 'long', 
+        day: 'numeric', 
+        year: 'numeric' 
+      })
+    }
 
     // Create message for Facebook Messenger
     const message = `Hello Villa Kathreyna! I would like to inquire about booking.
@@ -28,7 +56,7 @@ Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
 Event Type: ${formData.eventType}
-Event Date: ${formData.eventDate}
+Event Date: ${formattedDate}
 Guest Count: ${formData.guestCount}
 Message: ${formData.message}`
 
@@ -131,7 +159,7 @@ Message: ${formData.message}`
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Event Type *</label>
+                  <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Booking Type *</label>
                   <select
                     required
                     className="w-full px-4 py-3 rounded-lg border border-[#E5E0D8] focus:border-[#0D7377] focus:ring-2 focus:ring-[#0D7377]/20 outline-none transition-all bg-white text-[#1A1A1A]"
@@ -139,23 +167,42 @@ Message: ${formData.message}`
                     onChange={(e) => setFormData({ ...formData, eventType: e.target.value })}
                   >
                     <option value="">Select event type</option>
-                    <option value="Wedding - Silver">Wedding - Silver Package</option>
-                    <option value="Wedding - Gold">Wedding - Gold Package</option>
-                    <option value="Wedding - Platinum">Wedding - Platinum Package</option>
-                    <option value="Wedding - Diamond">Wedding - Diamond Package</option>
-                    <option value="All-In Wedding">All-In Wedding Package</option>
-                    <option value="Birthday">Birthday</option>
-                    <option value="Christening">Christening</option>
-                    <option value="Debut">Debut</option>
-                    <option value="Reunion">Reunion</option>
-                    <option value="Corporate Event">Corporate Event</option>
-                    <option value="Party">Party</option>
-                    <option value="Holiday Celebration">Holiday Celebration</option>
-                    <option value="Exclusive Access">Exclusive Access (22hrs)</option>
-                    <option value="Hall & Pool Rental">Hall & Pool Rental</option>
-                    <option value="Room Booking">Room Booking / Staycation</option>
-                    <option value="Walk-In">Walk-In / Day Use</option>
-                    <option value="Other">Other</option>
+                    <optgroup label="Wedding Packages">
+                      <option value="Silver">Silver Package</option>
+                      <option value="Gold">Gold Package</option>
+                      <option value="Platinum">Platinum Package</option>
+                      <option value="Diamond">Diamond Package</option>
+                      <option value="All-In Wedding">All-In Wedding Package</option>
+                    </optgroup>
+                    <optgroup label="Venue Packages">
+                      <option value="RK Hall (No Pool Access)">RK Hall (No Pool Access)</option>
+                      <option value="RK Hall with Pool Access">RK Hall with Pool Access</option>
+                      <option value="Garden and Pool Access">Garden and Pool Access</option>
+                      <option value="RK Hall, Garden, Pool Access">RK Hall, Garden, Pool Access</option>
+                      <option value="Exclusive Access">Exclusive Access (22hrs)</option>
+                    </optgroup>
+                    <optgroup label="Room Booking">
+                      <option value="Princess Room">Princess Room</option>
+                      <option value="Prince Room">Prince Room</option>
+                      <option value="Duchess Room">Duchess Room</option>
+                      <option value="Queen Suite">Queen Suite</option>
+                      <option value="King Suite">King Suite</option>
+                    </optgroup>
+                    <optgroup label="Event Packages">
+                      <option value="Birthday Package">Birthday Package - RKreatioNs</option>
+                      <option value="Birthday or Baptism Service Package">Birthday or Baptism - Villa Kathreyna</option>
+                      <option value="Debut Package A">Debut Package A (50 pax)</option>
+                      <option value="Debut Package B">Debut Package B (100 pax)</option>
+                    </optgroup>
+                    <optgroup label="Other Events">
+                      <option value="Christening">Christening</option>
+                      <option value="Reunion">Reunion</option>
+                      <option value="Corporate Event">Corporate Event</option>
+                      <option value="Party">Party</option>
+                      <option value="Holiday Celebration">Holiday Celebration</option>
+                      <option value="Walk-In / Day Use">Walk-In / Day Use</option>
+                      <option value="Other">Other</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>
@@ -169,6 +216,15 @@ Message: ${formData.message}`
                     value={formData.eventDate}
                     onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
                   />
+                  {formData.eventDate && (
+                    <p className="mt-1 text-sm text-[#0D7377] font-medium">
+                      {new Date(formData.eventDate + 'T00:00:00').toLocaleDateString('en-US', { 
+                        month: 'long', 
+                        day: 'numeric', 
+                        year: 'numeric' 
+                      })}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Estimated Guest Count</label>
@@ -187,7 +243,7 @@ Message: ${formData.message}`
                 <textarea
                   rows={4}
                   className="w-full px-4 py-3 rounded-lg border border-[#E5E0D8] focus:border-[#0D7377] focus:ring-2 focus:ring-[#0D7377]/20 outline-none transition-all resize-none bg-white text-[#1A1A1A]"
-                  placeholder="Tell us about your event..."
+                  placeholder="Tell us about your event... Feel free to mention any add-ons, customizations, or special requests you'd like for your celebration!"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
@@ -226,6 +282,10 @@ Message: ${formData.message}`
                 <div>
                   <p className="text-[#C5A028] font-medium text-sm">Call Us</p>
                   <p className="text-xl font-bold">0977 627 1360</p>
+                  <p className="text-sm text-white/80 flex items-center gap-1 mt-1">
+                    <PhoneCall className="w-4 h-4" />
+                    054 341 3605 (Landline)
+                  </p>
                 </div>
               </motion.a>
 
@@ -247,9 +307,12 @@ Message: ${formData.message}`
                 </div>
               </motion.a>
 
-              <motion.div 
-                className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4"
-                initial={{ opacity: 0, y: 20 }}
+              <motion.a
+                href="https://www.google.com/maps?q=Villa+Kathreyna+San+Fernando+Camarines+Sur"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4 hover:bg-[#0D7377]/90 transition-colors cursor-pointer"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
                 viewport={{ once: true }}
@@ -262,7 +325,7 @@ Message: ${formData.message}`
                   <p className="text-[#C5A028] font-medium text-sm">Location</p>
                   <p className="text-lg font-bold">Zone 5, Planza, San Fernando, Cam. Sur</p>
                 </div>
-              </motion.div>
+              </motion.a>
 
               <div className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4">
                 <div className="w-14 h-14 bg-[#C5A028] rounded-full flex items-center justify-center flex-shrink-0">
@@ -270,7 +333,7 @@ Message: ${formData.message}`
                 </div>
                 <div>
                   <p className="text-[#C5A028] font-medium text-sm">Operating Hours</p>
-                  <p className="text-lg font-bold">6:00 AM - 12:00 MN (Daily)</p>
+                  <p className="text-lg font-bold">24/7 - Open Daily</p>
                 </div>
               </div>
             </div>

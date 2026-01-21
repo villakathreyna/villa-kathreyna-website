@@ -232,7 +232,12 @@ export default function RoomsSection() {
                   className="w-full bg-[#0D7377] text-white py-2.5 rounded-lg font-medium text-sm hover:bg-[#0D7377]/90 transition-colors"
                   onClick={() => {
                     setSelectedRoom(room.id)
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                    // Dispatch custom event with room name
+                    window.dispatchEvent(new CustomEvent('selectPackage', { detail: `${room.name}` }))
+                    // Scroll to contact form
+                    setTimeout(() => {
+                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                    }, 100)
                   }}
                 >
                   Book This Room
