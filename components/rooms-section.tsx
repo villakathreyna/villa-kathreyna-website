@@ -28,6 +28,7 @@ const rooms = [
     capacity: "2 pax",
     maxCapacity: "Up to 4 pax with extra bed",
     bed: "Bunk Beds",
+    highlight: "Space-Saving Design",
     image: "/images/prince-20room.jpg",
     amenities: ["Private Bathroom", "Hygiene Kit for 2", "Air-Conditioned", "Bunk Bed Style"],
     features: ["ac", "bath", "breakfast"],

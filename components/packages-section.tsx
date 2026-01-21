@@ -198,7 +198,7 @@ const venuePackages = [
     id: "hall-pool",
     name: "RK Hall (with Pool Access)",
     icon: <Building className="w-8 h-8" />,
-    description: "Luxurious indoor-outdoor experience at an exceptional value",
+    description: "Elegant indoor-outdoor experience combining hall sophistication with poolside refreshment",
     rates: [
       { pax: "20-50 pax", hours6: "10,000", hours8: "12,000" },
       { pax: "50-100 pax", hours6: "13,000", hours8: "15,000" },
@@ -275,7 +275,7 @@ const exclusiveAccessPackage = {
     "Tables & chairs for 50 pax",
     "1 buffet table",
     "Water dispenser with free 2 gallons of water",
-    "Full kitchen access (Corkage fee: P500)",
+    "Full kitchen access (Corkage fee: ₱500)",
   ],
   eventBonus: [
     "Hall use included with free table & chair setup for 50 pax",
@@ -291,19 +291,19 @@ const exclusiveAccessPackage = {
 }
 
 const addOns = [
-  { item: "Catering Service (Food, Utensils & Waiters)", price: "starts at 500 PHP/head" },
-  { item: "Backdrop Decor", price: "starts at 5,000 PHP" },
-  { item: "All-In Customized Decor", price: "starts at 10,000 PHP" },
-  { item: "Host/Clown/Magician/Game Facilitator", price: "starts at 5,000 PHP" },
-  { item: "Photographer", price: "starts at 5,000 PHP" },
-  { item: "Photobooth", price: "starts at 4,000 PHP" },
-  { item: "Grazing Table", price: "starts at 10,000 PHP" },
-  { item: "Lechon", price: "starts at 9,000 PHP" },
-  { item: "Cake", price: "starts at 3,000 PHP" },
-  { item: "Bubble Show", price: "starts at 3,000 PHP" },
-  { item: "Inflatables", price: "starts at 4,000 PHP" },
-  { item: "On-The-Day Coordinators", price: "starts at 10,000 PHP" },
-  { item: "Party Food Carts", price: "starts at 3,000 PHP" },
+  { item: "Catering Service (Food, Utensils & Waiters)", price: "starts at ₱500/head" },
+  { item: "Backdrop Decor", price: "starts at ₱5,000" },
+  { item: "All-In Customized Decor", price: "starts at ₱10,000" },
+  { item: "Host/Clown/Magician/Game Facilitator", price: "starts at ₱5,000" },
+  { item: "Photographer", price: "starts at ₱5,000" },
+  { item: "Photobooth", price: "starts at ₱4,000" },
+  { item: "Grazing Table", price: "starts at ₱10,000" },
+  { item: "Lechon", price: "starts at ₱9,000" },
+  { item: "Cake", price: "starts at ₱3,000" },
+  { item: "Bubble Show", price: "starts at ₱3,000" },
+  { item: "Inflatables", price: "starts at ₱4,000" },
+  { item: "On-The-Day Coordinators", price: "starts at ₱10,000" },
+  { item: "Party Food Carts", price: "starts at ₱3,000" },
   { item: "Other Party Needs & Services", price: "Contact RkreatioNs Catering Services" },
 ]
 
@@ -350,6 +350,7 @@ const eventPackages = [
     provider: "Villa Kathreyna",
     price: "60,000",
     pax: "70 pax",
+    tagline: "Celebrate life's precious milestones with an all-inclusive package combining elegant venue, delicious catering, and complimentary accommodations",
     inclusions: [
       "Food catering services for 70 pax",
       "6 hours free use of: RK Hall, Garden, Pool access",
@@ -424,12 +425,12 @@ const eventPackages = [
 ]
 
 const corkageRates = [
-  { item: "Electric Food Cart", price: "1,000 PHP" },
-  { item: "Lechon", price: "1,500 PHP" },
-  { item: "Mobile Bar/Coffee Bar", price: "2,000 PHP" },
-  { item: "Sound/Band", price: "2,000 PHP" },
-  { item: "Lights", price: "1,000 PHP" },
-  { item: "LED Wall", price: "2,500 PHP" },
+  { item: "Electric Food Cart", price: "₱1,000" },
+  { item: "Lechon", price: "₱1,500" },
+  { item: "Mobile Bar/Coffee Bar", price: "₱2,000" },
+  { item: "Sound/Band", price: "₱2,000" },
+  { item: "Lights", price: "₱1,000" },
+  { item: "LED Wall", price: "₱2,500" },
 ]
 
 export default function PackagesSection() {
@@ -553,8 +554,8 @@ export default function PackagesSection() {
 
           {/* Venue Packages Tab (Hall & Pool) */}
           <TabsContent value="venue">
-            <motion.div 
-              className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-4 md:p-6 lg:p-8 mb-6 md:mb-8 shadow-lg"
+            <motion.div
+              className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-4 md:p-6 lg:p-8 mb-6 md:mb-8 shadow-lg max-w-5xl mx-auto"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -573,7 +574,7 @@ export default function PackagesSection() {
               </div>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
               {venuePackages.map((pkg, index) => (
                 <motion.div 
                   key={pkg.id} 
@@ -584,48 +585,48 @@ export default function PackagesSection() {
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >
-                  <div className="bg-[#0D7377] p-3 md:p-4 text-white text-center">
-                    <div className="text-[#C5A028] mb-2 flex justify-center text-lg md:text-2xl">{pkg.icon}</div>
-                    <h3 className="font-cinzel-decorative text-sm md:text-lg font-bold mb-1">{pkg.name}</h3>
-                    <p className="text-white/80 text-xs">{pkg.description}</p>
+                  <div className="bg-[#0D7377] p-5 md:p-6 text-white text-center">
+                    <div className="text-[#C5A028] mb-3 flex justify-center text-2xl md:text-3xl">{pkg.icon}</div>
+                    <h3 className="font-cinzel-decorative text-lg md:text-xl font-bold mb-2">{pkg.name}</h3>
+                    <p className="text-white/80 text-sm md:text-base">{pkg.description}</p>
                   </div>
-                  <div className="p-3 md:p-4">
-                    <h4 className="font-cinzel text-sm md:text-base text-[#0D7377] font-bold mb-2">Rates</h4>
-                    <div className="grid grid-cols-2 gap-1 mb-3 md:mb-4">
+                  <div className="p-5 md:p-6">
+                    <h4 className="font-cinzel text-base md:text-lg text-[#0D7377] font-bold mb-3">Rates</h4>
+                    <div className="grid grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-5">
                       {pkg.rates.map((rate, idx) => (
-                        <div key={idx} className="bg-[#FAF8F5] p-1.5 md:p-2 rounded">
-                          <p className="font-bold text-[#0D7377] text-xs mb-0.5">{rate.pax}</p>
+                        <div key={idx} className="bg-[#FAF8F5] p-3 md:p-4 rounded-lg">
+                          <p className="font-bold text-[#0D7377] text-sm md:text-base mb-1">{rate.pax}</p>
                           {"day" in rate ? (
-                            <div className="space-y-0.5 text-xs">
-                              <div className="flex items-center gap-1">
+                            <div className="space-y-1 text-sm md:text-base">
+                              <div className="flex items-center gap-2">
                                 <span className="text-[#1A1A1A]/60">Day:</span>
-                                <span className="font-bold text-[#C5A028]">P{rate.day}</span>
+                                <span className="font-bold text-[#C5A028]">₱{rate.day}</span>
                               </div>
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-center gap-2">
                                 <span className="text-[#1A1A1A]/60">Night:</span>
-                                <span className="font-bold text-[#C5A028]">P{rate.night}</span>
+                                <span className="font-bold text-[#C5A028]">₱{rate.night}</span>
                               </div>
                             </div>
                           ) : "hours6" in rate ? (
-                            <div className="space-y-0.5 text-xs">
-                              <div className="flex items-center gap-1">
+                            <div className="space-y-1 text-sm md:text-base">
+                              <div className="flex items-center gap-2">
                                 <span className="text-[#1A1A1A]/60 whitespace-nowrap">6 hrs:</span>
-                                <span className="font-bold text-[#C5A028]">P{rate.hours6}</span>
+                                <span className="font-bold text-[#C5A028]">₱{rate.hours6}</span>
                               </div>
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-center gap-2">
                                 <span className="text-[#1A1A1A]/60 whitespace-nowrap">8 hrs:</span>
-                                <span className="font-bold text-[#C5A028]">P{rate.hours8}</span>
+                                <span className="font-bold text-[#C5A028]">₱{rate.hours8}</span>
                               </div>
                             </div>
                           ) : (
-                            <div className="space-y-0.5 text-xs">
-                              <div className="flex items-center gap-1">
+                            <div className="space-y-1 text-sm md:text-base">
+                              <div className="flex items-center gap-2">
                                 <span className="text-[#1A1A1A]/60 whitespace-nowrap">4 hrs:</span>
-                                <span className="font-bold text-[#C5A028]">P{rate.hours4}</span>
+                                <span className="font-bold text-[#C5A028]">₱{rate.hours4}</span>
                               </div>
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-center gap-2">
                                 <span className="text-[#1A1A1A]/60 whitespace-nowrap">6 hrs:</span>
-                                <span className="font-bold text-[#C5A028]">P{rate.hours6}</span>
+                                <span className="font-bold text-[#C5A028]">₱{rate.hours6}</span>
                               </div>
                             </div>
                           )}
@@ -634,7 +635,7 @@ export default function PackagesSection() {
                     </div>
                     <button
                       onClick={() => handleSelectPackage(pkg.name)}
-                      className="w-full bg-[#C5A028] text-[#0D7377] py-2.5 md:py-3 rounded-lg font-bold text-xs md:text-sm hover:bg-[#E8D48B] transition-colors active:scale-95"
+                      className="w-full bg-[#C5A028] text-[#0D7377] py-3 md:py-4 rounded-lg font-bold text-sm md:text-base hover:bg-[#E8D48B] transition-colors active:scale-95"
                     >
                       Book This Package
                     </button>
@@ -670,7 +671,7 @@ export default function PackagesSection() {
                     <span className="text-[#C5A028] text-xs md:text-base">{exclusiveAccessPackage.duration}</span>
                   </div>
                   <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-cinzel text-[#C5A028] mb-2">
-                    P{exclusiveAccessPackage.price}
+                    ₱{exclusiveAccessPackage.price}
                   </p>
                 </div>
 
@@ -732,12 +733,27 @@ export default function PackagesSection() {
 
           {/* Wedding Packages Tab - Full comparison table with all inclusions */}
           <TabsContent value="wedding">
+            {/* Title and Spiel Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-[#0D7377] to-[#0D7377]/90 rounded-2xl p-6 md:p-8 mb-8 md:mb-12 max-w-5xl mx-auto text-center shadow-lg"
+            >
+              <h2 className="font-cinzel-decorative text-2xl sm:text-3xl md:text-4xl text-white mb-3 md:mb-4">
+                Your Dream Wedding Awaits
+              </h2>
+              <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                Where elegance meets affordability—complete venue access, exquisite catering, and luxurious accommodations for your unforgettable day.
+              </p>
+            </motion.div>
+
             {/* Package Comparison Table - Desktop */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}              viewport={{ once: true }}
               className="hidden lg:block mb-12 overflow-x-auto"
             >
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -1027,7 +1043,18 @@ export default function PackagesSection() {
                         className="flex justify-between items-center py-3 border-b border-[#E5E0D8] last:border-0"
                       >
                         <span className="text-[#1A1A1A]/80">{addon.item}</span>
-                        <span className="font-bold text-[#C5A028]">{addon.price}</span>
+                        {addon.item === "Other Party Needs & Services" ? (
+                          <a 
+                            href="https://www.facebook.com/profile.php?id=100064225560986" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="font-bold text-[#C5A028] hover:text-[#0D7377] transition-colors underline"
+                          >
+                            {addon.price}
+                          </a>
+                        ) : (
+                          <span className="font-bold text-[#C5A028]">{addon.price}</span>
+                        )}
                       </li>
                     ))}
                   </ul>
