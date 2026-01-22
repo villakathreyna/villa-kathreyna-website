@@ -22,6 +22,7 @@ export default function ContactSection() {
     phone: "",
     eventType: "",
     eventDate: getTodayDate(),
+    checkoutDate: getTodayDate(),
     guestCount: "",
     message: "",
   })
@@ -49,6 +50,17 @@ export default function ContactSection() {
       })
     }
 
+    // Format checkout date if provided
+    let formattedCheckoutDate = ''
+    if (formData.checkoutDate) {
+      const checkoutDate = new Date(formData.checkoutDate + 'T00:00:00')
+      formattedCheckoutDate = checkoutDate.toLocaleDateString('en-US', { 
+        month: 'long', 
+        day: 'numeric', 
+        year: 'numeric' 
+      })
+    }
+
     // Create message for Facebook Messenger
     const message = `Hello Villa Kathreyna! I would like to inquire about booking.
 
@@ -56,7 +68,7 @@ Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
 Event Type: ${formData.eventType}
-Event Date: ${formattedDate}
+Event Date: ${formattedDate}${formData.checkoutDate ? `\nCheckout Date: ${formattedCheckoutDate}` : ''}
 Guest Count: ${formData.guestCount}
 Message: ${formData.message}`
 
@@ -66,7 +78,7 @@ Message: ${formData.message}`
   }
 
   return (
-    <section id="contact" className="py-20 bg-[#FAF8F5] ornament-pattern">
+    <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -209,7 +221,7 @@ Message: ${formData.message}`
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Preferred Date</label>
+                  <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Check-in Date</label>
                   <input
                     type="date"
                     className="w-full px-4 py-3 rounded-lg border border-[#E5E0D8] focus:border-[#0D7377] focus:ring-2 focus:ring-[#0D7377]/20 outline-none transition-all bg-white text-[#1A1A1A]"
@@ -226,6 +238,28 @@ Message: ${formData.message}`
                     </p>
                   )}
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Check-out Date <span className="text-[#1A1A1A]/50">(Optional - for longer stays)</span></label>
+                  <input
+                    type="date"
+                    className="w-full px-4 py-3 rounded-lg border border-[#E5E0D8] focus:border-[#0D7377] focus:ring-2 focus:ring-[#0D7377]/20 outline-none transition-all bg-white text-[#1A1A1A]"
+                    value={formData.checkoutDate}
+                    min={formData.eventDate}
+                    onChange={(e) => setFormData({ ...formData, checkoutDate: e.target.value })}
+                  />
+                  {formData.checkoutDate && (
+                    <p className="mt-1 text-sm text-[#0D7377] font-medium">
+                      {new Date(formData.checkoutDate + 'T00:00:00').toLocaleDateString('en-US', { 
+                        month: 'long', 
+                        day: 'numeric', 
+                        year: 'numeric' 
+                      })}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#1A1A1A]/80 mb-2">Estimated Guest Count</label>
                   <input
@@ -327,7 +361,13 @@ Message: ${formData.message}`
                 </div>
               </motion.a>
 
-              <div className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4">
+              <motion.div 
+                className="bg-[#0D7377] text-white p-6 rounded-xl flex items-center gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                viewport={{ once: true }}
+              >
                 <div className="w-14 h-14 bg-[#C5A028] rounded-full flex items-center justify-center flex-shrink-0">
                   <Clock className="w-6 h-6 text-[#0D7377]" />
                 </div>
@@ -335,7 +375,7 @@ Message: ${formData.message}`
                   <p className="text-[#C5A028] font-medium text-sm">Operating Hours</p>
                   <p className="text-lg font-bold">24/7 - Open Daily</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <motion.div 

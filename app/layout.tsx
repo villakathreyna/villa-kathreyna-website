@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Playfair_Display, Cormorant_Garamond, Cinzel_Decorative, Cinzel } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import StarParticles from "@/components/star-particles"
 import "./globals.css"
 
 const playfair = Playfair_Display({
@@ -140,6 +141,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${cormorant.variable} ${cinzelDecorative.variable} ${cinzel.variable} font-serif antialiased`}
       >
+        <StarParticles />
         {children}
         <Analytics />
       </body>

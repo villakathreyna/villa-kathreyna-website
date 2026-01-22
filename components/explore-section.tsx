@@ -82,7 +82,7 @@ export default function ExploreSection() {
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-3xl mx-auto leading-relaxed">
             Villa Kathreyna is an exclusive events place and resort featuring a royal, elegant gold & green
-            Mediterranean vibe. Nestled in the heart of San Fernando, Camarines Sur, we deliver sophisticated luxury that's surprisingly accessible—where elegance meets exceptional value for your celebrations and relaxation.
+            Mediterranean vibe. Nestled in the heart of San Fernando, Camarines Sur, we deliver royalty within reach—where elegance meets exceptional value for your celebrations and relaxation.
           </p>
         </motion.div>
 
@@ -115,7 +115,7 @@ export default function ExploreSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="font-cinzel text-2xl text-[#0D7377] font-bold text-center mb-8">Our Majestic Spaces</h3>
+          <h3 className="font-cinzel text-2xl text-[#0D7377] font-bold text-center mb-8">Your Royal Venue Awaits</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {venueImages.map((image, index) => (
               <motion.div

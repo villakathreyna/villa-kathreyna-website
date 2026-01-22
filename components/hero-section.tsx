@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
+import HeroStarParticles from "./hero-star-particles"
 
 export default function HeroSection() {
   return (
@@ -16,6 +17,7 @@ export default function HeroSection() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A]/70 via-[#2D2A20]/60 to-[#1A1A1A]/80" />
+        <HeroStarParticles />
       </div>
 
       {/* Decorative Elements */}

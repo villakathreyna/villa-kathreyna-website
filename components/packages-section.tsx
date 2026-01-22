@@ -633,6 +633,11 @@ export default function PackagesSection() {
                         </div>
                       ))}
                     </div>
+                    {(pkg.id === "hall-only" || pkg.id === "hall-pool") && (
+                      <p className="text-xs text-[#1A1A1A]/60 italic mb-3 md:mb-4">
+                        * RK Hall has a maximum capacity of 100 pax
+                      </p>
+                    )}
                     <button
                       onClick={() => handleSelectPackage(pkg.name)}
                       className="w-full bg-[#C5A028] text-[#0D7377] py-3 md:py-4 rounded-lg font-bold text-sm md:text-base hover:bg-[#E8D48B] transition-colors active:scale-95"

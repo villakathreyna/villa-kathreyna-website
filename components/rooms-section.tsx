@@ -16,6 +16,7 @@ const rooms = [
     capacity: "2 pax",
     maxCapacity: "Up to 4 pax with extra bed",
     bed: "Double Bed",
+    highlight: "Nature-Inspired Retreat",
     image: "/images/princess-20rom.jpg",
     amenities: ["Private Bathroom", "Hygiene Kit for 2", "Air-Conditioned", "Green & Gold Theme", "Tree Wall Art"],
     features: ["ac", "bath", "breakfast"],
@@ -30,7 +31,7 @@ const rooms = [
     bed: "Bunk Beds",
     highlight: "Space-Saving Design",
     image: "/images/prince-20room.jpg",
-    amenities: ["Private Bathroom", "Hygiene Kit for 2", "Air-Conditioned", "Bunk Bed Style"],
+    amenities: ["Private Bathroom", "Hygiene Kit for 2", "Air-Conditioned", "Bunk Bed Style", "Modern & Cozy"],
     features: ["ac", "bath", "breakfast"],
   },
   {

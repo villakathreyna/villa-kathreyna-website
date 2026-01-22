@@ -20,7 +20,7 @@ export default function VideoShowcaseSection() {
           </h2>
           <div className="w-24 h-1 bg-[#C5A028] mx-auto mb-8" />
           <p className="text-lg text-[#1A1A1A]/80 max-w-2xl mx-auto">
-            Discover the elegance and beauty of Villa Kathreyna in this exclusive video showcase. Your perfect celebration awaits.
+            Discover the elegance and beauty of Villa Kathreyna, where every story is luxuriously told. Your perfect celebration awaits—where your forever starts and the stars align.
           </p>
         </motion.div>
 
@@ -56,7 +56,7 @@ export default function VideoShowcaseSection() {
               className="bg-white rounded-xl p-6 shadow-lg text-center border-t-2 border-[#C5A028]"
             >
               <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-2">Premium Venue</h4>
-              <p className="text-[#1A1A1A]/70 text-sm">Indulge in world-class elegance without the premium price tag.</p>
+              <p className="text-[#1A1A1A]/70 text-sm">Royalty within reach—indulge in world-class elegance without the premium price tag.</p>
             </motion.div>
 
             <motion.div
@@ -67,7 +67,7 @@ export default function VideoShowcaseSection() {
               className="bg-white rounded-xl p-6 shadow-lg text-center border-t-2 border-[#C5A028]"
             >
               <h4 className="font-cinzel text-lg text-[#0D7377] font-bold mb-2">Perfect Setting</h4>
-              <p className="text-[#1A1A1A]/70 text-sm">Sophisticated venues and lush gardens—luxury that feels within reach.</p>
+              <p className="text-[#1A1A1A]/70 text-sm">Sophisticated venues and lush gardens—affordable luxury for every celebration.</p>
             </motion.div>
 
             <motion.div
